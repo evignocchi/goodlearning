@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-07T10:24:56+00:00",
+  "title": "Design System: Goodlearning Landing",
+  "extensions": {
+    "colorMeta": {
+      "cobalt-field": {
+        "role": "primary",
+        "displayName": "Cobalt Field",
+        "canonical": "oklch(46% 0.209 263)",
+        "tonalRamp": [
+          "#110063",
+          "#000088",
+          "#002bae",
+          "#1653d5",
+          "#3978fd",
+          "#5b9dff",
+          "#7dc3ff",
+          "#a1eaff"
+        ]
+      },
+      "cobalt-deep": {
+        "role": "primary",
+        "displayName": "Cobalt Deep",
+        "canonical": "oklch(37% 0.169 263)",
+        "tonalRamp": [
+          "#070051",
+          "#000c75",
+          "#0a369a",
+          "#2a59c0",
+          "#4a7de6",
+          "#6ba1ff",
+          "#8ec6ff",
+          "#b2ecff"
+        ]
+      },
+      "sky-tint": {
+        "role": "secondary",
+        "displayName": "Sky Tint",
+        "canonical": "oklch(78% 0.094 256)",
+        "tonalRamp": [
+          "#000531",
+          "#002351",
+          "#1d4273",
+          "#3c6296",
+          "#5c84ba",
+          "#7ea7df",
+          "#a1ccff",
+          "#c6f2ff"
+        ]
+      },
+      "sky-text": {
+        "role": "secondary",
+        "displayName": "Sky Text",
+        "canonical": "oklch(90% 0.046 263)",
+        "tonalRamp": [
+          "#030a1e",
+          "#19253c",
+          "#35425b",
+          "#53627c",
+          "#74839f",
+          "#96a6c3",
+          "#b9cae8",
+          "#deefff"
+        ]
+      },
+      "signal": {
+        "role": "tertiary",
+        "displayName": "Signal Orange",
+        "canonical": "oklch(67% 0.224 34)",
+        "tonalRamp": [
+          "#440000",
+          "#6d0000",
+          "#960000",
+          "#c00000",
+          "#e93200",
+          "#ff5f34",
+          "#ff875c",
+          "#ffae82"
+        ]
+      },
+      "signal-dark": {
+        "role": "tertiary",
+        "displayName": "Signal Dark",
+        "canonical": "oklch(55% 0.191 34)",
+        "tonalRamp": [
+          "#3d0000",
+          "#650000",
+          "#8c0000",
+          "#b41a00",
+          "#dd4828",
+          "#ff6e4e",
+          "#ff9472",
+          "#ffba96"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(97% 0.009 265)",
+        "tonalRamp": [
+          "#090b0f",
+          "#232529",
+          "#404247",
+          "#5f6166",
+          "#808288",
+          "#a2a5ab",
+          "#c6c9cf",
+          "#ebeef4"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "oklch(100% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(23% 0.085 263)",
+        "tonalRamp": [
+          "#00042e",
+          "#0e224e",
+          "#29406f",
+          "#476092",
+          "#6782b6",
+          "#89a5db",
+          "#accaff",
+          "#d1efff"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "oklch(40% 0.075 266)",
+        "tonalRamp": [
+          "#02062a",
+          "#142249",
+          "#2f406a",
+          "#4d608c",
+          "#6e81b0",
+          "#8fa4d5",
+          "#b3c9fb",
+          "#d7eeff"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only, lowercase, wdth 118."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings, wdth 112."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Stage, list and tray headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs at 62ch maximum."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Form labels and captions."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Every transition and entrance on the page."
+      },
+      {
+        "name": "belt-travel",
+        "value": "3.2s ease-out-expo, once on load",
+        "purpose": "The orange sheet crossing the hero belt; stations arrive in 0.8s steps."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack-hero",
+        "value": "900px"
+      },
+      {
+        "name": "belt-vertical",
+        "value": "760px"
+      },
+      {
+        "name": "nav-collapse",
+        "value": "1020px"
+      },
+      {
+        "name": "short-viewport",
+        "value": "max-height 840px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Signal Button",
+      "kind": "button",
+      "refersTo": "button-signal",
+      "description": "The contact action. Orange with ink text, lifts on hover.",
+      "html": "<button class=\"ds-btn-signal\">Richiedi contatto <svg width=\"18\" height=\"18\" viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M3 10h12M10 4l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"square\"/></svg></button>",
+      "css": ".ds-btn-signal{display:inline-flex;align-items:center;gap:.6em;min-height:52px;padding:0 24px;background:#ff4a1c;color:#071a45;border:2px solid transparent;border-radius:0;font:700 16px/1 Archivo,Arial,sans-serif;font-stretch:108%;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1),background-color .2s}.ds-btn-signal:hover{background:#ff6a42;transform:translateY(-2px)}.ds-btn-signal:active{background:#c93410;transform:none}.ds-btn-signal:focus-visible{outline:3px solid #0a47c9;outline-offset:3px}"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Secondary action with a 2px current-colour border.",
+      "html": "<button class=\"ds-btn-line\">Iscriviti gratis</button>",
+      "css": ".ds-btn-line{min-height:52px;padding:0 24px;background:transparent;color:#071a45;border:2px solid currentColor;border-radius:0;font:700 16px/1 Archivo,Arial,sans-serif;font-stretch:108%;cursor:pointer;transition:background-color .2s,color .2s}.ds-btn-line:hover{background:#071a45;color:#fff;border-color:#071a45}.ds-btn-line:focus-visible{outline:3px solid #ff4a1c;outline-offset:3px}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field-input",
+      "description": "Square field with a 2px ink border on a cool paper fill.",
+      "html": "<label class=\"ds-label\" for=\"ds-f\">Email di lavoro</label><input class=\"ds-input\" id=\"ds-f\" type=\"email\" placeholder=\"nome@azienda.it\">",
+      "css": ".ds-label{display:block;margin-bottom:6px;font:700 14px/1.4 Archivo,Arial,sans-serif;font-stretch:104%;color:#071a45}.ds-input{width:100%;min-height:52px;padding:12px 14px;background:#f2f5fb;color:#071a45;border:2px solid #071a45;border-radius:0;font:400 16px/1.4 Archivo,Arial,sans-serif}.ds-input::placeholder{color:#5b6b92}.ds-input:focus-visible{outline:3px solid #0a47c9;outline-offset:2px;background:#fff}"
+    },
+    {
+      "name": "Choice Chip",
+      "kind": "chip",
+      "refersTo": "field-input",
+      "description": "Segment picker: azienda or ente di formazione. Checked fills with ink.",
+      "html": "<span class=\"ds-chip\">Un'azienda</span> <span class=\"ds-chip ds-chip-on\">Un ente di formazione</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;min-height:52px;padding:0 18px;border:2px solid #071a45;background:#f2f5fb;color:#071a45;font:600 16px/1 Archivo,Arial,sans-serif;margin-right:10px}.ds-chip-on{background:#071a45;color:#fff}"
+    },
+    {
+      "name": "Nameplate Navigation",
+      "kind": "nav",
+      "refersTo": "tray",
+      "description": "White logo tab flush to the corner of a cobalt bar, links in white.",
+      "html": "<div class=\"ds-nav\"><span class=\"ds-plate\"><b>good</b>learning</span><a href=\"#\">Piattaforma</a><a href=\"#\">Moduli AI</a><a href=\"#\" class=\"ds-cta\">Richiedi contatto</a></div>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:26px;background:#0a47c9;color:#fff;min-height:64px;padding-right:20px;font:600 15px/1 Archivo,Arial,sans-serif}.ds-plate{align-self:stretch;display:flex;align-items:center;padding:0 24px;background:#fff;color:#0060b0;font:400 22px/1 Archivo,Arial,sans-serif}.ds-plate b{font-weight:800}.ds-nav a{color:#fff;text-decoration:none;border-bottom:2px solid transparent;padding:8px 0}.ds-nav a:hover{border-bottom-color:#ff4a1c}.ds-nav .ds-cta{margin-left:auto;background:#ff4a1c;color:#071a45;padding:14px 18px;border:0}"
+    },
+    {
+      "name": "Belt Station",
+      "kind": "custom",
+      "refersTo": "tray",
+      "description": "Signature element: a flat drawing standing on the conveyor belt, with name and note below.",
+      "html": "<div class=\"ds-station\"><svg viewBox=\"0 0 240 152\" width=\"160\" height=\"101\"><polygon points=\"70,8 150,8 178,36 178,148 70,148\" fill=\"#ff4a1c\"/><polygon points=\"150,8 150,36 178,36\" fill=\"#c93410\"/><rect x=\"86\" y=\"58\" width=\"76\" height=\"7\" fill=\"#071a45\"/><rect x=\"86\" y=\"76\" width=\"58\" height=\"7\" fill=\"#071a45\"/><rect x=\"86\" y=\"94\" width=\"76\" height=\"7\" fill=\"#071a45\"/></svg><div class=\"ds-belt\"></div><b>Il tuo documento</b><span>Procedure, slide, PDF, audio e video.</span></div>",
+      "css": ".ds-station{background:#0a47c9;color:#fff;padding:24px 24px 20px;font:400 15px/1.4 Archivo,Arial,sans-serif;display:grid;gap:4px;max-width:260px}.ds-station svg{display:block}.ds-belt{height:8px;margin:0 -24px 14px;background:repeating-linear-gradient(90deg,#fff 0 16px,transparent 16px 22px)}.ds-station b{font:800 17px/1.2 Archivo,Arial,sans-serif;font-stretch:112%}.ds-station span{color:#cfe0ff}"
+    },
+    {
+      "name": "Module Tab",
+      "kind": "custom",
+      "refersTo": "tray",
+      "description": "Oversized selector name. Selected turns orange and slides right; the rest dim.",
+      "html": "<div class=\"ds-tabs\"><button class=\"ds-tab ds-tab-on\"><span>GoodContent <i>AI</i></span></button><button class=\"ds-tab\"><span>GoodAnswer <i>AI</i></span></button></div>",
+      "css": ".ds-tabs{background:#071a45;padding:12px 24px}.ds-tab{display:block;width:100%;text-align:left;padding:18px 0;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.28);color:#fff;font:800 40px/1 Archivo,Arial,sans-serif;font-stretch:114%;letter-spacing:-.035em;opacity:.4;cursor:pointer;transition:opacity .3s}.ds-tab i{font-style:normal;font-weight:400;font-stretch:100%;letter-spacing:0;color:#8fb9f2}.ds-tab span{display:inline-block;transition:transform .4s cubic-bezier(.16,1,.3,1)}.ds-tab:hover{opacity:.75}.ds-tab-on{opacity:1;color:#ff4a1c}.ds-tab-on span{transform:translateX(20px)}.ds-tab-on i{color:#fff}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Assembly Line",
+    "overview": "GoodSuite takes a document in and delivers a tracked course out, so the page is built like the machine that does it: flat, frontal, one object seen once. Whole bands of electric cobalt carry the page, a chain-link conveyor belt runs under the stations of the hero and returns at the foot of the proof band, and the only warm colour is the orange of the paper moving along it and of the action that asks for contact.",
+    "keyCharacteristics": [
+      "Committed colour: cobalt owns whole bands, not accents.",
+      "One signature, repeated: the belt, with the orange sheet on it.",
+      "Lowercase, wide, heavy display type that echoes the lowercase logo.",
+      "Square corners everywhere; depth comes from colour blocks, never from shadow.",
+      "Real content only: numbers, quotes and prices come from the live site."
+    ],
+    "rules": [
+      {
+        "name": "The Orange Is Paper Rule",
+        "body": "Orange appears only as something being processed (the sheet, the ticks) or as the action that continues the process (contact). It is never a decorative accent.",
+        "section": "colors"
+      },
+      {
+        "name": "The Cool Ground Rule",
+        "body": "Light grounds stay cool (Paper, White). Warm cream is the rendition prior for this category and is not part of this world.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lowercase Voice Rule",
+        "body": "Display and headline text is lowercase in the source to echo the logo. Do not apply text-transform: it breaks AI and GoodSuite.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tracking Floor Rule",
+        "body": "Tight tracking stops at -0.035em. Numerals are tabular.",
+        "section": "typography"
+      },
+      {
+        "name": "The No Shadow Rule",
+        "body": "Nothing casts a shadow. Hover is a 2px lift and a lighter orange, nothing more.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do let cobalt own whole bands and keep every light ground cool.",
+      "Do put Ink text on orange and white or Sky Text on cobalt.",
+      "Do repeat the belt where the story is about process, and keep the orange sheet singular.",
+      "Do keep copy plain and factual; every number, price and quote must exist on the live site.",
+      "Do keep corners square and depth flat."
+    ],
+    "donts": [
+      "Don't use white text on Signal Orange.",
+      "Don't add shadows, gradients, glass, cream grounds or decorative orange.",
+      "Don't use eyebrows or kickers above headings.",
+      "Don't apply text-transform: lowercase to headings.",
+      "Don't invent customers, certifications, AI model names or hosting claims."
+    ]
+  }
+}
