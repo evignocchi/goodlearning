@@ -28,6 +28,8 @@ Success for this landing: **contact requests** (a form on the page). Free-plan s
 
 An LMS that is also a KMS: courses, meetings, workflows and AI that answers from the company's own documents, in one system. Differentiators the user confirmed: deep customization (the customer's own logo and platform), responsive technical support, a simple course editor, and strength in mandatory-training and compliance contexts in Italy. Direct competitors are generic LMSs (Moodle, TalentLMS and Italian peers); do not name competitors on the page.
 
+Core promise, in the owner's words: Goodlearning simplifies. The simplification is not bought with compromises. It comes from precision and functions that used to cost a lot of money and time (turning documents into courses, tracking, meetings and answers from company knowledge in one place). Design work should make that simplification visible rather than state it; the headline does not need to say "semplifica".
+
 ## Operating Context
 
 - Revenue today is led by GoodSuite; other lines are custom projects (GoodIdea, GoodPlanning) and course creation services.
@@ -46,7 +48,7 @@ Open: where the contact form posts to. The form is built with a clear integratio
 
 ## Brand Commitments
 
-Keep the Goodlearning logo (blue "good" + lighter blue "learning" with the fan/drop mark) and the blue colour family. The product-line logos (GoodSuite, GoodMeeting, GoodPlanning, GoodIdea) exist as PNG on the live site. Everything else (type, layout, components, imagery) is open to redesign. Language: Italian; English exists on the live site and is out of scope for now. Tone of the live copy is plain and practical.
+Keep the Goodlearning logo (blue "good" + lighter blue "learning" with the fan/drop mark) and the blue colour family. The product-line logos (GoodSuite, GoodMeeting, GoodPlanning, GoodIdea) exist as PNG on the live site. Everything else (type, layout, components, imagery) is open to redesign. Language: Italian; English exists on the live site and is out of scope for now. Tone of the live copy is plain and practical. The copy written for the v1 landing (root index.html) is approved and is the text base for later versions.
 
 ## Evidence on Hand
 

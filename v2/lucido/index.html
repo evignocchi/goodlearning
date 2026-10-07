@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Goodlearning | Piattaforma LMS per aziende ed enti di formazione</title>
+  <meta name="description" content="GoodSuite è la piattaforma LMS di Goodlearning: crea corsi, li eroga in aula e online e registra chi li ha seguiti. I moduli AI partono dai tuoi documenti.">
+  <meta name="theme-color" content="#eef1f7">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="preload" href="fonts/bricolage-grotesque-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/ui.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#contatto">Vai al modulo di contatto</a>
+
+  <header class="top" data-header>
+    <div class="wrap top__in">
+      <a class="brand" href="https://www.goodlearning.it/it/home-it/" aria-label="Goodlearning, home">
+        <img src="../assets/img/logo.png" width="190" height="31" alt="Goodlearning">
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+      <div class="nav" id="menu">
+        <nav aria-label="Principale">
+          <ul class="nav__list">
+            <li><a href="#piattaforma">Piattaforma</a></li>
+            <li><a href="#ai">Moduli AI</a></li>
+            <li><a href="#per-chi">Per chi</a></li>
+            <li><a href="https://www.goodlearning.it/it/home-it/prezzi-goodsuite/">Prezzi</a></li>
+            <li><a href="https://www.goodlearning.it/it/home-it/blog/">Blog</a></li>
+            <li><a href="https://www.goodlearning.it/gl/46">Login</a></li>
+          </ul>
+        </nav>
+        <a class="btn btn--ink" href="#contatto">Richiedi contatto</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero__copy">
+        <h1 id="hero-title">Dai tuoi documenti a corsi <mark>tracciati</mark>.</h1>
+        <p class="lead">GoodSuite è la piattaforma LMS di Goodlearning. Crea i corsi, li eroga in aula e online e registra chi li ha seguiti. I moduli AI partono dai tuoi documenti e dalla conoscenza dell'azienda.</p>
+
+        <form class="quick" data-contact-form aria-labelledby="quick-title" action="mailto:info@goodlearning.it" method="post" enctype="text/plain" novalidate>
+          <p class="sr-only" id="quick-title">Richiedi contatto</p>
+          <div class="field">
+            <label for="h-nome">Nome e cognome</label>
+            <input id="h-nome" name="nome" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="h-email">Email di lavoro</label>
+            <input id="h-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="h-org">Azienda o ente</label>
+            <input id="h-org" name="organizzazione" type="text" autocomplete="organization" required>
+          </div>
+          <button class="btn btn--ink" type="submit">Richiedi contatto
+            <svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-note">Prima di inviare, leggi l'<a href="https://www.goodlearning.it/it/home-it/privacy-policy/">informativa privacy</a>.</p>
+        </form>
+      </div>
+
+      <!-- The tracing: the old tangle underneath, one clean line over it -->
+      <div class="trace">
+        <img class="trace__mess" src="mess.svg" alt="" aria-hidden="true">
+        <ul class="trace__old" aria-hidden="true">
+          <li style="left:5%;top:14%"><svg viewBox="0 0 48 48"><rect x="6" y="8" width="36" height="32" rx="3"/><path d="M6 18h36M6 28h36M18 8v32M30 8v32"/></svg></li>
+          <li style="left:15%;top:62%"><svg viewBox="0 0 48 48"><rect x="5" y="11" width="38" height="26" rx="3"/><path d="m6 13 18 14 18-14"/></svg></li>
+          <li style="left:8%;top:44%"><svg viewBox="0 0 48 48"><path d="M10 8h24l6 6v26H10z"/><path d="M16 22h18M16 29h18M16 36h10"/></svg></li>
+          <li style="left:20%;top:20%"><svg viewBox="0 0 48 48"><path d="M8 10h14a4 4 0 0 1 4 4v26a4 4 0 0 0-4-4H8zM40 10H26v26h14z"/></svg></li>
+        </ul>
+
+        <div class="trace__sheet" aria-hidden="true"></div>
+        <svg class="trace__line" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path d="M 170 110 C 235 110, 245 232, 300 232 L 670 232" vector-effect="non-scaling-stroke"/>
+        </svg>
+
+        <ol class="chips" aria-label="Il percorso in GoodSuite">
+          <li class="chip chip--up" style="left:33%"><span class="chip__card"><b>Il tuo documento</b><span>Procedure, slide, PDF</span></span></li>
+          <li class="chip chip--down" style="left:42%"><span class="chip__card"><b>GoodContent AI</b><span>Lezioni, quiz, giochi</span></span></li>
+          <li class="chip chip--up" style="left:51%"><span class="chip__card"><b>Il corso</b><span>Aula, online o misto</span></span></li>
+          <li class="chip chip--down" style="left:60%"><span class="chip__card"><b>Il registro</b><span>Presenze e scadenze</span></span></li>
+        </ol>
+
+        <figure class="trace__ui">
+          <img src="../assets/img/platform-ui.webp" width="959" height="716" alt="Schermata reale di GoodSuite: il Marketplace dei corsi, con il menu di gestione e gli strumenti AI">
+          <span class="trace__ring" aria-hidden="true"></span>
+        </figure>
+      </div>
+    </section>
+
+    <!-- PLATFORM -->
+    <section class="section" id="piattaforma" aria-labelledby="piattaforma-title">
+      <div class="wrap">
+        <header class="head head--split">
+          <h2 id="piattaforma-title">Tutto il corso, dall'anagrafica al report</h2>
+          <p class="lead">Una piattaforma proprietaria, pensata da ingegneri, per la formazione sincrona, asincrona e mista.</p>
+        </header>
+
+        <div class="stages">
+          <article class="stage" data-reveal>
+            <div class="sheet" aria-hidden="false">
+              <figure class="ui ui--groups" role="img" aria-label="Anteprima illustrativa: gruppi e utenti in GoodSuite">
+                <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><b>Gruppi</b><span class="ui__btn">Nuovo gruppo</span></div>
+                <ul>
+                  <li class="ui__row"><span class="ui__ava">RP</span><span class="ui__name">Reparto produzione<small>24 utenti</small></span><span class="ui__chip">Supervisore</span></li>
+                  <li class="ui__row"><span class="ui__ava">AM</span><span class="ui__name">Amministrazione<small>11 utenti</small></span><span class="ui__chip">Supervisore</span></li>
+                  <li class="ui__row"><span class="ui__ava">MG</span><span class="ui__name">Magazzino<small>17 utenti</small></span><span class="ui__chip">Supervisore</span></li>
+                </ul>
+                <div class="ui__foot"><span class="ui__btn ui__btn--line">Iscrivi il gruppo a un corso</span></div>
+              </figure>
+            </div>
+            <div class="stage__text">
+              <h3>Aziende, utenti e gruppi</h3>
+              <p>Ogni gruppo ha un supervisore, che inserisce gli utenti, li iscrive ai corsi e ai web meeting e li gestisce da sé.</p>
+            </div>
+          </article>
+
+          <article class="stage stage--flip" data-reveal>
+            <div class="sheet">
+              <figure class="ui ui--editor" role="img" aria-label="Anteprima illustrativa: l'editor dei corsi di GoodSuite">
+                <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><b>Editor corso</b><span class="ui__btn">Pubblica</span></div>
+                <div class="ui__tabs"><span aria-current="true">Materiali</span><span>Test</span><span>Attività</span><span>Giochi</span></div>
+                <div class="ui__split">
+                  <div class="ui__rail"><span aria-current="true">Introduzione</span><span>Procedura</span><span>Quiz finale</span></div>
+                  <div class="ui__canvas"><i class="ui__title"></i><i class="ui__line"></i><i class="ui__line"></i><i class="ui__media"></i><i class="ui__line"></i></div>
+                </div>
+              </figure>
+            </div>
+            <div class="stage__text">
+              <h3>L'editor dei corsi</h3>
+              <p>Prepari materiali e test direttamente online. Importi le slide, aggiungi attività e giochi, carichi corsi SCORM già pronti. Per le lezioni in presenza c'è il registro elettronico.</p>
+            </div>
+          </article>
+
+          <article class="stage" data-reveal>
+            <div class="sheet">
+              <figure class="ui ui--meeting" role="img" aria-label="Anteprima illustrativa: GoodMeeting con registrazione e presenze">
+                <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><b>GoodMeeting</b><span class="ui__chip ui__chip--ok">Registrazione attiva</span></div>
+                <div class="ui__tiles">
+                  <span class="ui__tile ui__tile--live"><span class="ui__live">In diretta</span>MR</span>
+                  <span class="ui__tile">LB</span><span class="ui__tile">CS</span><span class="ui__tile">+15</span>
+                </div>
+                <div class="ui__foot"><span class="ui__name">Presenti 18 di 20</span><span class="ui__prog"><i style="width:90%"></i></span></div>
+              </figure>
+            </div>
+            <div class="stage__text">
+              <h3>Aula, online e meeting insieme</h3>
+              <p>GoodMeeting è dentro la piattaforma. Registra la partecipazione di ogni utente nel report del corso e salva la registrazione dell'incontro. Così la lezione in diretta fa parte del percorso tracciato.</p>
+            </div>
+          </article>
+
+          <article class="stage stage--flip" data-reveal>
+            <div class="sheet">
+              <figure class="ui ui--report" role="img" aria-label="Anteprima illustrativa: report di avanzamento e scadenze">
+                <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><b>Report corsi</b><span class="ui__btn ui__btn--line">Esporta</span></div>
+                <ul>
+                  <li class="ui__row"><span class="ui__ava">CH</span><span class="ui__name">Corso HACCP<small>Corsista 1</small></span><span class="ui__prog"><i style="width:100%"></i></span><span class="ui__chip ui__chip--ok">Completato</span></li>
+                  <li class="ui__row"><span class="ui__ava">RL</span><span class="ui__name">Aggiornamento RLS<small>Corsista 2</small></span><span class="ui__prog"><i style="width:64%"></i></span><span class="ui__chip">In corso</span></li>
+                  <li class="ui__row"><span class="ui__ava">SL</span><span class="ui__name">Sicurezza lavoratori<small>Corsista 3</small></span><span class="ui__prog"><i style="width:22%"></i></span><span class="ui__chip ui__chip--due">In scadenza</span></li>
+                </ul>
+              </figure>
+            </div>
+            <div class="stage__text">
+              <h3>Tracciatura di ogni corsista</h3>
+              <p>La piattaforma registra le attività di ogni corsista, così il percorso si può dimostrare a enti certificatori e finanziatori. Un pannello mostra avanzamento e scadenze. Per ogni edizione definisci supervisori, docenti e tutor.</p>
+            </div>
+          </article>
+        </div>
+        <p class="note">Le interfacce in queste anteprime sono illustrative. La schermata in apertura è quella reale.</p>
+
+        <div class="extras">
+          <div><h3>Market corsi</h3><p>Compri o vendi corsi già pronti, sviluppati da Goodlearning o dagli autori iscritti. Puoi aggiungere moduli tuoi sulle procedure della tua azienda.</p></div>
+          <div><h3>Creazione dei materiali</h3><p>Partiamo dal tuo materiale grezzo (procedure, slide, audio o video) e costruiamo il corso con i nostri sistemi AI e gli avatar virtuali.</p></div>
+          <div><h3>Integrazione con i tuoi clienti</h3><p>Se i tuoi clienti hanno almeno un account Free, possono iscriversi ai corsi dalla propria anagrafica. Il controllo resta a te.</p></div>
+          <div><h3>La piattaforma con il tuo logo</h3><p>Con un piano in abbonamento la piattaforma porta il tuo logo e diventa la tua.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI MODULES -->
+    <section class="section section--sheet" id="ai" aria-labelledby="ai-title">
+      <div class="wrap">
+        <header class="head head--split">
+          <h2 id="ai-title">Tre moduli AI dentro GoodSuite</h2>
+          <p class="lead">Si attivano sulla piattaforma che usi già e partono dalla conoscenza della tua azienda.</p>
+        </header>
+
+        <div class="ai">
+          <div class="ai__tabs" role="tablist" aria-label="Moduli AI" aria-orientation="vertical">
+            <button class="ai__tab" role="tab" id="tab-content" aria-selected="true" aria-controls="panel-content" type="button"><img src="../assets/img/ai-goodcontent.png" width="1200" height="300" alt="GoodContent AI"></button>
+            <button class="ai__tab" role="tab" id="tab-answer" aria-selected="false" aria-controls="panel-answer" tabindex="-1" type="button"><img src="../assets/img/ai-goodanswer.png" width="1200" height="300" alt="GoodAnswer AI"></button>
+            <button class="ai__tab" role="tab" id="tab-slides" aria-selected="false" aria-controls="panel-slides" tabindex="-1" type="button"><img src="../assets/img/ai-goodslides.png" width="1200" height="300" alt="GoodSlides AI"></button>
+          </div>
+
+          <div class="ai__panels">
+            <div class="ai__panel" role="tabpanel" id="panel-content" aria-labelledby="tab-content" tabindex="0">
+              <div class="sheet">
+                <figure class="ui ui--content" role="img" aria-label="Anteprima illustrativa: da un documento a un corso">
+                  <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><b>GoodContent AI</b></div>
+                  <div class="ui__flow">
+                    <span class="ui__file"><b>Procedura di sicurezza.pdf</b><small>Documento caricato</small></span>
+                    <span class="ui__arrow" aria-hidden="true">→</span>
+                    <span class="ui__outline"><span>Lezioni e slide</span><span>Quiz</span><span>Gioco didattico</span></span>
+                  </div>
+                </figure>
+              </div>
+              <div class="ai__text">
+                <p class="ai__lead">Carichi un documento e in pochi minuti ottieni un corso interattivo: slide, immagini, infografiche, quiz, giochi didattici e avatar che parlano.</p>
+                <p>Il corso si può collegare a LMS esterni con un wrapper SCORM.</p>
+                <p class="links"><a href="https://vimeo.com/1190124102">Guarda la demo</a><a href="https://www.goodlearning.it/it/home-it/goodcontent-ai/">Scopri di più</a></p>
+              </div>
+            </div>
+            <div class="ai__panel" role="tabpanel" id="panel-answer" aria-labelledby="tab-answer" tabindex="0" hidden>
+              <div class="sheet">
+                <figure class="ui ui--chat" role="img" aria-label="Anteprima illustrativa: chatbot che risponde dalla conoscenza aziendale">
+                  <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><b>GoodAnswer AI</b></div>
+                  <div class="ui__chat">
+                    <span class="ui__msg ui__msg--q">Cosa prevede la procedura di evacuazione?</span>
+                    <span class="ui__msg ui__msg--a">Avvisa il responsabile di reparto, raggiungi il punto di raccolta e attendi l'appello.</span>
+                  </div>
+                  <div class="ui__field"><span>Scrivi una domanda</span></div>
+                </figure>
+              </div>
+              <div class="ai__text">
+                <p class="ai__lead">Un chatbot che risponde in base alla conoscenza dell'azienda. Procedure, normative ed esperienza accumulata diventano consultabili da chiunque in squadra.</p>
+                <p class="links"><a href="https://www.goodlearning.it/it/home-it/goodanswer-ai/">Scopri di più</a></p>
+              </div>
+            </div>
+            <div class="ai__panel" role="tabpanel" id="panel-slides" aria-labelledby="tab-slides" tabindex="0" hidden>
+              <div class="sheet">
+                <figure class="ui ui--slides" role="img" aria-label="Anteprima illustrativa: presentazione generata da un documento">
+                  <div class="ui__bar"><span class="ui__dots"><i></i><i></i><i></i></span><b>GoodSlides AI</b><span class="ui__btn">Esporta in PowerPoint</span></div>
+                  <div class="ui__thumbs">
+                    <span class="ui__thumb"><i class="ui__title"></i><i class="ui__line"></i><i class="ui__line"></i></span>
+                    <span class="ui__thumb"><i class="ui__title"></i><i class="ui__line"></i><i class="ui__line"></i></span>
+                    <span class="ui__thumb"><i class="ui__title"></i><i class="ui__line"></i><i class="ui__line"></i></span>
+                  </div>
+                </figure>
+              </div>
+              <div class="ai__text">
+                <p class="ai__lead">Da un documento ottieni una presentazione professionale e lo script per chi la presenta. Si esporta in PowerPoint.</p>
+                <p class="links"><a href="https://www.goodlearning.it/it/home-it/goodslides-ai/">Scopri di più</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUDIENCES -->
+    <section class="section" id="per-chi" aria-labelledby="perchi-title">
+      <div class="wrap">
+        <header class="head"><h2 id="perchi-title">Per aziende e per enti di formazione</h2></header>
+        <div class="who">
+          <article class="sheet who__sheet" data-reveal>
+            <h3 class="who__name">Aziende</h3>
+            <p class="who__lead">Formazione continua e obbligatoria per industria e servizi, con il registro di chi ha fatto cosa.</p>
+            <p class="who__price">Da <strong>49 €</strong> al mese, IVA esclusa</p>
+            <dl>
+              <div><dt>Piani</dt><dd>Team fino a 100 utenti, Business fino a 250, Corporate fino a 500.</dd></div>
+              <div><dt>Il canone dipende da</dt><dd>Il numero di utenti inseriti in anagrafica. Puoi passare a un piano superiore quando vuoi, con calcolo pro rata del mese.</dd></div>
+              <div><dt>Corsi pronti</dt><dd>Li acquisti dal market e li adatti alle tue procedure con l'editor.</dd></div>
+            </dl>
+            <p class="links"><a href="https://www.goodlearning.it/it/home-it/industria-manufatturiera/">Industria</a><a href="https://www.goodlearning.it/it/home-it/aziende-di-servizi/">Aziende di servizi</a><a href="https://www.goodlearning.it/it/home-it/prezzi-goodsuite/">Tutti i prezzi</a></p>
+          </article>
+          <article class="sheet who__sheet who__sheet--alt" data-reveal>
+            <h3 class="who__name">Enti di formazione</h3>
+            <p class="who__lead">Un'unica piattaforma per erogare i corsi ai tuoi corsisti e vendere i tuoi contenuti.</p>
+            <p class="who__price">Da <strong>49 €</strong> al mese, IVA esclusa</p>
+            <dl>
+              <div><dt>Piani</dt><dd>Bronze, Silver e Gold, con GoodMeeting incluso e un pacchetto di iscrizioni diverso per ogni piano.</dd></div>
+              <div><dt>Il canone dipende da</dt><dd>Le iscrizioni ai corsi. Oltre il pacchetto paghi una tariffa per ogni iscrizione extra, da 0,80 € con il piano Gold.</dd></div>
+              <div><dt>Vendita dei corsi</dt><dd>Il market ti permette di vendere i corsi che sviluppi e di acquistare quelli degli altri autori.</dd></div>
+            </dl>
+            <p class="links"><a href="https://www.goodlearning.it/it/home-it/enti-di-formazione/">Enti di formazione</a><a href="https://www.goodlearning.it/it/home-it/market-corsi/">Market corsi</a><a href="https://www.goodlearning.it/it/home-it/prezzi-goodsuite/">Tutti i prezzi</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF -->
+    <section class="section section--sheet" id="prova" aria-labelledby="prova-title">
+      <div class="wrap">
+        <h2 class="sr-only" id="prova-title">I numeri e le parole dei clienti</h2>
+        <p class="count">Dopo più di <mark>10 anni</mark> di esperienza, Goodlearning conta <mark>55.000</mark> corsisti, <mark>50.000</mark> corsi erogati e <mark>20.000</mark> meeting.</p>
+
+        <div class="quotes">
+          <figure class="quote quote--lead" data-reveal>
+            <blockquote><p>La personalizzazione è il punto di forza, fattore che ci ha fatto optare per Goodlearning e per nessun altro. Il supporto tecnico è sempre stato disponibile e raggiungibile per risolvere qualsiasi problema.</p></blockquote>
+            <figcaption><strong>Aurora</strong>Responsabile Area Formazione</figcaption>
+          </figure>
+          <figure class="quote" data-reveal>
+            <blockquote><p>L'editor corsi è sicuramente un punto di forza: è possibile creare qualsiasi tipo di corso (e a costi contenuti), basta creare il materiale.</p></blockquote>
+            <figcaption><strong>Federico</strong>Responsabile tecnico</figcaption>
+          </figure>
+          <figure class="quote" data-reveal>
+            <blockquote><p>Apprezzo la possibilità di gestire i corsi in modalità sincrona, asincrona e blended all'interno di un unico strumento. Inoltre il supporto tecnico è molto disponibile.</p></blockquote>
+            <figcaption><strong>Nicola</strong>Responsabile HR</figcaption>
+          </figure>
+          <figure class="quote quote--wide" data-reveal>
+            <blockquote><p>È una piattaforma molto semplice da utilizzare, caricare i contenuti e inserire le vocalizzazioni è molto immediato. La voce si sente molto bene, i test alla fine dei corsi con le statistiche affiancate sono ottimi.</p></blockquote>
+            <figcaption><strong>Rosella</strong>Responsabile Marketing</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- START + FAQ -->
+    <section class="section" id="inizia" aria-labelledby="inizia-title">
+      <div class="wrap">
+        <header class="head head--split">
+          <h2 id="inizia-title">Comincia dal piano Free</h2>
+          <p class="lead">Non ha costi iniziali né periodici. Se ti serve di più, scegli un piano oppure continua a pagare solo quello che usi.</p>
+        </header>
+
+        <ol class="steps">
+          <li class="sheet" data-reveal><h3>Iscriviti</h3><p>Registra la tua azienda o il tuo ente dal modulo online. Non serve pagare.</p></li>
+          <li class="sheet" data-reveal><h3>Provalo</h3><p>Costruisci un corso con l'editor, iscrivi fino a 10 corsisti e prova GoodMeeting (4 ore al mese, fino a 5 partecipanti).</p></li>
+          <li class="sheet" data-reveal><h3>Scegli il piano</h3><p>Passa a un abbonamento con i servizi inclusi quando i numeri lo richiedono.</p></li>
+        </ol>
+        <p class="steps__cta"><a class="btn btn--line" href="https://www.goodlearning.it/gl/46?CMD=registerEnte&amp;LANG=0&amp;TIM=2023-06-23T11:32:38.003832&amp;PV=none&amp;UAC=guest&amp;CHK=95e27ef353dc43e4a9fcf50143e1361e">Iscriviti gratis</a></p>
+
+        <div class="faq" aria-label="Domande frequenti">
+          <details><summary>Posso annullare l'abbonamento?</summary><p class="answer">Sì, in qualunque momento: basta scriverci o telefonarci. Puoi anche passare a un piano superiore o inferiore quando vuoi.</p></details>
+          <details><summary>Che metodi di pagamento accettate?</summary><p class="answer">Carta di credito e bonifico bancario. Lavoriamo solo con imprese ed enti (B2B) e i prezzi sono sempre IVA esclusa.</p></details>
+          <details><summary>Posso provare la piattaforma prima di abbonarmi?</summary><p class="answer">Sì, con il piano Free, che ha alcune limitazioni. Con il Free puoi anche usare le funzioni complete pagando a consumo.</p></details>
+          <details><summary>Avete già dei corsi pronti?</summary><p class="answer">Sì, nel market corsi. Se quello che ti serve non c'è, lo sviluppiamo insieme.</p></details>
+          <details><summary>Posso caricare corsi in formato SCORM?</summary><p class="answer">Sì. GoodSuite importa i contenuti SCORM e ne traccia l'uso.</p></details>
+          <details><summary>La piattaforma può avere il mio logo?</summary><p class="answer">Con i piani in abbonamento sì: diventa la tua piattaforma a tutti gli effetti.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT: the clean sheet -->
+    <section class="contact" id="contatto" aria-labelledby="contatto-title">
+      <div class="wrap contact__in">
+        <div class="contact__ghost" aria-hidden="true"></div>
+        <div class="contact__sheet sheet">
+          <h2 id="contatto-title">Parliamo della tua formazione.</h2>
+          <p class="lead">Scrivici di che corsi hai bisogno e quante persone devi formare. Ti rispondiamo per capire se GoodSuite fa al caso tuo.</p>
+          <form class="form" data-contact-form aria-labelledby="contatto-title" action="mailto:info@goodlearning.it" method="post" enctype="text/plain" novalidate>
+            <div class="form__grid">
+              <div class="field"><label for="c-nome">Nome e cognome</label><input id="c-nome" name="nome" type="text" autocomplete="name" required></div>
+              <div class="field"><label for="c-email">Email di lavoro</label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
+              <div class="field"><label for="c-org">Azienda o ente</label><input id="c-org" name="organizzazione" type="text" autocomplete="organization" required></div>
+              <div class="field"><label for="c-tel">Telefono <span class="opt">(facoltativo)</span></label><input id="c-tel" name="telefono" type="tel" autocomplete="tel"></div>
+            </div>
+            <fieldset class="field choice-wrap">
+              <legend>Sei</legend>
+              <div class="choice">
+                <label><input type="radio" name="tipo" value="Azienda" required> Un'azienda</label>
+                <label><input type="radio" name="tipo" value="Ente di formazione"> Un ente di formazione</label>
+              </div>
+            </fieldset>
+            <div class="field"><label for="c-msg">Cosa devi formare? <span class="opt">(facoltativo)</span></label><textarea id="c-msg" name="messaggio" rows="4"></textarea></div>
+            <div class="form__actions">
+              <button class="btn btn--ink" type="submit">Richiedi contatto
+                <svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <p class="form-status" role="status" aria-live="polite"></p>
+            </div>
+            <p class="form-note">Prima di inviare, leggi l'<a href="https://www.goodlearning.it/it/home-it/privacy-policy/">informativa privacy</a>.</p>
+          </form>
+          <address class="contact__info">
+            <a href="mailto:info@goodlearning.it">info@goodlearning.it</a>
+            <a href="tel:+390307778355">+39 030 777 83 55</a>
+            <span>Vicolo Ungaretti 13/B, 25030 Mazzano (BS)</span>
+          </address>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <p>© Goodlearning. P.IVA 03593630985. Iscr. CCIAA REA BS 547321.<br>Vicolo Ungaretti 13/B, 25030 Mazzano (BS).</p>
+      <ul>
+        <li><a href="https://www.goodlearning.it/it/home-it/chi-siamo/">Azienda</a></li>
+        <li><a href="https://www.goodlearning.it/it/home-it/contatti/">Contatti</a></li>
+        <li><a href="https://www.goodlearning.it/it/home-it/blog/">Blog</a></li>
+        <li><a href="https://www.goodlearning.it/it/home-it/termini-di-utilizzo/">Termini di utilizzo</a></li>
+        <li><a href="https://www.goodlearning.it/it/home-it/privacy-policy/">Privacy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <a class="dock" href="#contatto" data-dock>Richiedi contatto
+    <svg class="arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
