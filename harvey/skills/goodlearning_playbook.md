@@ -30,6 +30,8 @@ Il target iniziale sono aziende manifatturiere e di servizi in Lombardia, tra 30
 
 ## Segnali: cosa guardare e che cosa vuol dire
 
+I casi d'uso, le formazioni obbligatorie e la pesatura dei segnali sono in `goodlearning_use_cases.md`. Qui sotto c'è cosa Harvey sa captare oggi.
+
 Harvey ha un catalogo di 29 segnali. La maggior parte è pensata per vendere servizi di marketing locale e per Goodlearning non serve. Da confermare (`harvey signals --confirm`):
 
 | Segnale | Perché conta per Goodlearning |
