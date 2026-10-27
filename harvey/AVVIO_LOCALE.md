@@ -95,6 +95,16 @@ Per ognuna delle 10 bozze, incolla qui:
 
 Con quelle correggo le regole di stile in italiano, il contesto e il piè di pagina.
 
+## Uso di tutti i giorni: senza Terminale
+
+Dopo la prima installazione non ti serve più scrivere comandi.
+
+- **`Avvia Harvey.command`**: doppio clic. Si apre una finestra del Terminale (la lasci stare) e la dashboard compare nel browser. Da lì importi le liste (Contacts → Import list), scegli i segnali (Signals), avvii Harvey (Controls → Start Harvey) e leggi le bozze (Outbox). Per spegnere tutto chiudi la finestra: ferma anche Harvey.
+- **`Aggiorna Harvey.command`**: doppio clic per scaricare le novità del progetto. Spegni Harvey prima.
+- Per averlo sempre a portata di mano, trascina `Avvia Harvey.command` dal Finder sul Dock (a destra della linea, vicino al cestino) oppure sul Desktop tenendo premuto `Cmd + Opzione` per creare un alias.
+- La prima volta macOS potrebbe chiedere conferma per aprire il file: scegli Apri. Se dice che non ha i permessi, scrivi una volta `chmod +x "Avvia Harvey.command" "Aggiorna Harvey.command"` dalla cartella `harvey`.
+- Harvey lavora solo finché il Mac è acceso e la finestra è aperta.
+
 ## Se qualcosa non va
 
 | Cosa vedi | Cosa fare |
