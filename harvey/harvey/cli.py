@@ -388,6 +388,31 @@ def cmd_usage(args):
     asyncio.run(_usage())
 
 
+def cmd_import_leads(args):
+    """Import a CSV lead list (Apollo export or similar), deduplicated."""
+    from harvey.importer import apply_import, format_report, plan_import
+    from harvey.state import StateManager
+
+    try:
+        plan = plan_import(args.file)
+    except (OSError, ValueError) as e:
+        print(f"\n  Cannot import {args.file}: {e}\n")
+        sys.exit(1)
+
+    async def _import():
+        if args.dry_run:
+            print("\n  Dry run: nothing is written.\n" + format_report(plan) + "\n")
+            return
+        state = StateManager()
+        await state.init_db()
+        result = await apply_import(state, plan)
+        print("\n" + format_report(plan, result) + "\n")
+        if result.without_email:
+            print(f"  {result.without_email} lead(s) have no email: Harvey can't write to them yet.\n")
+
+    asyncio.run(_import())
+
+
 def cmd_export(args):
     """Export the prospect list as a sequencer-ready CSV."""
     from harvey.state import StateManager
@@ -1005,6 +1030,15 @@ def main():
              "and login; Claude: CLI isolation flags; no model call)",
     )
     sub.set_defaults(func=cmd_status)
+
+    # harvey import-leads
+    sub = subparsers.add_parser(
+        "import-leads", help="Import a CSV lead list (Apollo etc.), deduplicated"
+    )
+    sub.add_argument("file", help="CSV file to import")
+    sub.add_argument("--dry-run", action="store_true",
+                     help="Show the dedup report without writing anything")
+    sub.set_defaults(func=cmd_import_leads)
 
     # harvey export
     sub = subparsers.add_parser(
