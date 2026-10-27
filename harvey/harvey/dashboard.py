@@ -1019,6 +1019,8 @@ async def get_outbox_api():
         await state.fail_stale_sending_outbox()
         return {
             **_compliance_view(),
+            # No mailbox of Harvey's own: the user copies drafts and sends them.
+            "by_hand": not _harvey_can_send(),
             "paused": await state.get_setting("sending_paused"),
             "pending": await _with_context(
                 await state.get_outbox(status="pending_review", limit=100)),
@@ -1034,6 +1036,73 @@ async def get_outbox_api():
         }
     except Exception as e:
         return {"error": str(e)}
+
+
+# ── Import a lead list (Apollo and similar) ──
+
+MAX_IMPORT_CHARS = 5_000_000
+
+
+def _import_report(plan, known=()) -> dict:
+    return {
+        "rows": plan.rows,
+        "unique": len(plan.leads),
+        "skipped": [{"row": r, "why": w} for r, w in plan.skipped],
+        "duplicates": [{"row": r, "why": w} for r, w in plan.duplicates],
+        "phones_dropped": [{"row": r} for r, _ in plan.shared_phones],
+        "known": [{"row": r, "name": n} for r, n in known],
+        "without_email": sum(1 for lead in plan.leads if not lead.email),
+    }
+
+
+async def _import_plan(request: Request):
+    """The plan for an uploaded CSV, or (None, error response)."""
+    from harvey.importer import plan_import_text
+    try:
+        body = await request.json()
+    except ValueError:
+        body = None
+    text = body.get("text") if isinstance(body, dict) else None
+    if not isinstance(text, str) or not text.strip():
+        return None, body, _refuse('expected {"text": "<the CSV file>"}', 400)
+    if len(text) > MAX_IMPORT_CHARS:
+        return None, body, _refuse("That file is too big to import here (5 MB at most).", 413)
+    try:
+        return plan_import_text(text), body, None
+    except ValueError as e:
+        return None, body, _refuse(str(e), 400)
+
+
+@app.post("/api/import/preview")
+async def import_preview(request: Request):
+    """Read an uploaded list and say what would happen. Writes nothing."""
+    from harvey.importer import known_in_db
+    plan, _, error = await _import_plan(request)
+    if error:
+        return error
+    state = _state()
+    await state.init_db()
+    return {"success": True, **_import_report(plan, await known_in_db(state, plan))}
+
+
+@app.post("/api/import/apply")
+async def import_apply(request: Request):
+    """Import the uploaded list: duplicates inside it and ones Harvey already has are left out."""
+    from harvey.importer import apply_import
+    plan, body, error = await _import_plan(request)
+    if error:
+        return error
+    status = body.get("email_status", "verified")
+    if status not in ("verified", "risky", "guess"):
+        return _refuse('email_status must be "verified", "risky" or "guess"', 400)
+    state = _state()
+    await state.init_db()
+    result = await apply_import(state, plan, email_status=status)
+    await state.log_action("import_leads", "dashboard", {
+        "rows": plan.rows, "imported": result.inserted, "duplicates": len(plan.duplicates),
+        "already_known": len(result.existing), "email_status": status})
+    return {"success": True, **_import_report(plan, result.existing),
+            "imported": result.inserted, "email_status": status}
 
 
 @app.get("/api/sending-mode")

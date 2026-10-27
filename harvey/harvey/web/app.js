@@ -1611,6 +1611,7 @@ async function loadOutbox() {
   const pending = data.pending || [];
   _desk.items = pending;
   _desk.footer = data.footer || '';
+  _desk.byHand = !!data.by_hand;
   // Keep the desk on the draft being edited even if the list shifted.
   const editingAt = _desk.editing ? pending.findIndex(p => p.id === _desk.editing) : -1;
   if (editingAt >= 0) _desk.i = editingAt;
@@ -1875,6 +1876,14 @@ function renderDesk(items, i) {
       '<button class="btn btn-secondary" onclick="outboxAct(' + jsq(cur.id) + ',\'reject\')">' +
         'Reject <kbd>R</kbd></button>';
 
+  const copyBtns = '<span class="copy-group">' +
+    '<button class="btn btn-secondary" onclick="deskCopy(\'to\', this)">Copy address</button>' +
+    '<button class="btn btn-secondary" onclick="deskCopy(\'subject\', this)">Copy subject</button>' +
+    '<button class="btn btn-secondary" onclick="deskCopy(\'body\', this)">Copy text</button></span>';
+  const sentBtn = _desk.byHand && cur.kind === 'sequence' && cur.prospect_id
+    ? '<button class="btn btn-secondary" onclick="deskMarkSent(' + jsq(cur.prospect_id) + ')" ' +
+      'title="You sent it yourself: Harvey stops here and will not write to them again">I sent it</button>'
+    : '';
   return '<div class="desk">' +
     '<div class="desk-list">' + rail + '</div>' +
     '<div class="desk-pane">' +
@@ -1888,7 +1897,7 @@ function renderDesk(items, i) {
           'email can try to steer what Harvey writes.</div></div></div>'
         : '') +
       draft + footer +
-      '<div class="desk-actions">' + actions +
+      '<div class="desk-actions">' + copyBtns + sentBtn + actions +
         '<span class="muted" style="font-size:12px;margin-left:auto">' +
           (i + 1) + ' of ' + items.length + '</span>' +
       '</div>' +
@@ -2614,3 +2623,138 @@ setInterval(() => {
     case 'controls': loadLogs(); break;
   }
 }, 15000);
+
+
+// ── Copy a draft, and mark it sent by hand ──
+// The clipboard API only answers inside a click and some app views refuse it,
+// so fall back to selecting the text in a throwaway textarea.
+async function copyText(text, btn) {
+  let ok = false;
+  try {
+    await navigator.clipboard.writeText(text);
+    ok = true;
+  } catch {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { ok = document.execCommand('copy'); } catch { ok = false; }
+    ta.remove();
+  }
+  if (ok && btn) {
+    const was = btn.textContent;
+    btn.textContent = 'Copied';
+    setTimeout(() => { btn.textContent = was; }, 1400);
+  } else if (!ok) {
+    showToast('Could not copy. Select the text and copy it by hand.', 'error');
+  }
+}
+
+// What the person pastes into their own mail client: the body as it will
+// leave, with the compliance footer under a cold email (not added twice).
+function deskCopy(part, btn) {
+  const cur = _desk.items[_desk.i];
+  if (!cur) return;
+  const editing = _desk.editing === cur.id && _desk.unsaved;
+  const subject = editing ? _desk.unsaved.subject : (cur.subject || '');
+  let body = (editing ? _desk.unsaved.body : (cur.body || '')).trimEnd();
+  if (cur.kind === 'sequence' && _desk.footer && !body.endsWith(_desk.footer)) {
+    body += '\n\n' + _desk.footer;
+  }
+  copyText(part === 'to' ? (cur.to_email || '') : part === 'subject' ? subject : body, btn);
+}
+
+async function deskMarkSent(prospectId) {
+  if (deskBusy()) return;
+  const data = await api('/api/prospects/' + encodeURIComponent(prospectId) + '/sent', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({sent: true}),
+  });
+  if (data && data.success) showToast('Marked as sent by you.', 'success');
+  else showToast(failMsg(data, 'Could not save that. Try again.'), 'error');
+  loadOutbox();
+}
+
+// ── Import a lead list ──
+let _import = {text: '', name: '', report: null, busy: false};
+
+function importToggle() {
+  const el = document.getElementById('import-panel');
+  el.hidden = !el.hidden;
+  if (!el.hidden) importRender();
+}
+
+function importRender() {
+  const el = document.getElementById('import-panel');
+  const r = _import.report;
+  let html = '<h3>Import a list</h3><p class="muted">A CSV exported from Apollo or similar: name, job title, ' +
+    'company, email (LinkedIn URL and phone are optional). Duplicates inside the file and people Harvey ' +
+    'already has are left out. You see the result before anything is saved.</p>' +
+    '<div class="import-row"><input type="file" id="import-file" accept=".csv,text/csv" onchange="importChosen(this)">' +
+    (_import.name ? '<span class="muted">' + escHtml(_import.name) + '</span>' : '') + '</div>';
+  if (r && r.error) {
+    html += '<div class="banner bad" style="margin-top:12px">' + icon('alert') + '<div><b>Can\'t read that file</b><p>' +
+      escHtml(r.error) + '</p></div></div>';
+  } else if (r && r.done) {
+    html += '<div class="banner" style="margin-top:12px">' + icon('check') + '<div><b>Imported ' + r.imported +
+      ' contact' + (r.imported === 1 ? '' : 's') + '</b><p>' + r.duplicates.length + ' duplicate' +
+      (r.duplicates.length === 1 ? '' : 's') + ' in the file and ' + r.known.length +
+      ' already in Harvey were left out. Emails were saved as <b>' + escHtml(r.email_status) +
+      '</b>; Harvey did not check them.</p></div>';
+  } else if (r) {
+    const stat = (n, label) => '<div><b>' + n + '</b>' + label + '</div>';
+    const fresh = r.unique - r.known.length;
+    html += '<div class="import-stats">' + stat(r.rows, 'rows in the file') +
+      stat(r.duplicates.length, 'duplicates in the file') + stat(r.known.length, 'already in Harvey') +
+      stat(fresh, 'new contacts') + stat(r.without_email, 'without an email') + '</div>';
+    const notes = [].concat(
+      r.skipped.map(x => 'Row ' + x.row + ' skipped: ' + x.why),
+      r.duplicates.map(x => 'Row ' + x.row + ' is a duplicate: ' + x.why),
+      r.known.map(x => 'Row ' + x.row + ' is already in Harvey: ' + x.name),
+      r.phones_dropped.map(x => 'Row ' + x.row + ': phone number dropped (the same number is on people at different companies)'));
+    if (notes.length) html += '<ul class="import-notes">' + notes.map(n => '<li>' + escHtml(n) + '</li>').join('') + '</ul>';
+    html += '<div class="import-row"><label>Email status <select id="import-status">' +
+      '<option value="verified">Verified (the list is vouched for by you)</option>' +
+      '<option value="risky">Risky (catch-all, send with care)</option>' +
+      '<option value="guess">Unverified (Harvey will not write to them)</option></select></label>' +
+      '<button class="btn btn-primary" onclick="importApply()"' + (fresh && !_import.busy ? '' : ' disabled') + '>' +
+      (fresh ? 'Import ' + fresh + ' contact' + (fresh === 1 ? '' : 's') : 'Nothing new to import') + '</button></div>';
+  }
+  el.innerHTML = html;
+}
+
+async function importChosen(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  _import = {text: '', name: file.name, report: null, busy: true};
+  try { _import.text = await file.text(); } catch { _import.text = ''; }
+  const data = await api('/api/import/preview', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({text: _import.text}),
+  });
+  _import.busy = false;
+  _import.report = data && data.success ? data : {error: failMsg(data, 'The preview failed. Is the dashboard still running?')};
+  importRender();
+}
+
+async function importApply() {
+  if (_import.busy || !_import.text) return;
+  const sel = document.getElementById('import-status');
+  _import.busy = true;
+  importRender();
+  const data = await api('/api/import/apply', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({text: _import.text, email_status: sel ? sel.value : 'verified'}),
+  });
+  _import.busy = false;
+  if (data && data.success) {
+    _import.report = {...data, done: true};
+    showToast('Imported ' + data.imported + ' contacts.', 'success');
+    _import.text = '';
+    loadProspects();
+  } else {
+    _import.report = {error: failMsg(data, 'The import failed.')};
+  }
+  importRender();
+}

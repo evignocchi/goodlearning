@@ -11,6 +11,7 @@ Dedup keys, strongest first: email, LinkedIn URL, then name + company.
 """
 
 import csv
+import io
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -162,15 +163,24 @@ def _column_map(headers: list[str]) -> dict[str, str]:
 
 
 def plan_import(path: str | Path) -> ImportPlan:
-    plan = ImportPlan()
     with open(path, encoding="utf-8-sig", newline="") as fh:
-        reader = csv.DictReader(fh)
-        cols = _column_map(reader.fieldnames or [])
-        if "email" not in cols and "linkedin" not in cols:
-            raise ValueError("the file needs an Email or a LinkedIn URL column")
-        if "full_name" not in cols and not ("first_name" in cols and "last_name" in cols):
-            raise ValueError("the file needs a Full Name, or First Name and Last Name")
-        rows = list(reader)
+        return _plan(fh)
+
+
+def plan_import_text(text: str) -> ImportPlan:
+    """Same as ``plan_import`` for CSV text that is already in memory (an upload)."""
+    return _plan(io.StringIO(text.lstrip("\ufeff"), newline=""))
+
+
+def _plan(fh) -> ImportPlan:
+    plan = ImportPlan()
+    reader = csv.DictReader(fh)
+    cols = _column_map(reader.fieldnames or [])
+    if "email" not in cols and "linkedin" not in cols:
+        raise ValueError("the file needs an Email or a LinkedIn URL column")
+    if "full_name" not in cols and not ("first_name" in cols and "last_name" in cols):
+        raise ValueError("the file needs a Full Name, or First Name and Last Name")
+    rows = list(reader)
 
     def get(row: dict, key: str) -> str:
         col = cols.get(key)
@@ -247,6 +257,14 @@ def _notes(lead: Lead) -> str:
     if lead.employees:
         bits.append(f"about {lead.employees} employees")
     return ("Imported lead: " + "; ".join(bits)) if bits else ""
+
+
+async def known_in_db(state: StateManager, plan: ImportPlan) -> list[tuple[int, str]]:
+    """Leads of the plan Harvey already holds, as (row, name). Writes nothing."""
+    return [(lead.row, f"{lead.first_name} {lead.last_name}") for lead in plan.leads
+            if await state.prospect_exists(
+                email=lead.email, linkedin_url=lead.linkedin_url,
+                first_name=lead.first_name, last_name=lead.last_name, company=lead.company)]
 
 
 async def apply_import(state: StateManager, plan: ImportPlan,

@@ -1032,3 +1032,13 @@ table.clip td { max-width: 320px; overflow: hidden; text-overflow: ellipsis; }
 .warmup-actions { margin-top: var(--sp-2); align-items: center; }
 a.btn, a.btn:hover { text-decoration: none; }
 .warmup-actions .form-input { flex: 1 1 200px; height: 28px; min-width: 0; }
+
+/* Import a lead list */
+.import-panel { margin-bottom: var(--sp-5); }
+.import-panel h3 { margin: 0 0 var(--sp-2); }
+.import-panel .import-row { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; margin-top: var(--sp-3); }
+.import-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: var(--sp-3); margin-top: var(--sp-4); }
+.import-stats div { padding: var(--sp-3); border: 1px solid var(--line); border-radius: var(--r-md); }
+.import-stats b { display: block; font-size: 22px; line-height: 1.2; }
+.import-notes { margin: var(--sp-3) 0 0; padding-left: 18px; font-size: var(--fs-ui); max-height: 160px; overflow: auto; }
+.desk-actions .copy-group { display: inline-flex; gap: var(--sp-2); flex-wrap: wrap; }
