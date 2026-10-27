@@ -100,3 +100,29 @@ async def test_apply_is_idempotent_and_groups_companies(tmp_path):
     assert "Milan, Lombardy" in jo.personalization_notes
     company = await state.get_company(jo.company_id)
     assert company.domain == "acme.test"
+
+
+@pytest.mark.asyncio
+async def test_addresses_are_verified_on_import_by_default(tmp_path):
+    path = write(
+        tmp_path,
+        "Jo Li,HR Manager,Acme Srl,Milan,Lombardy,100,Machinery,jo@acme.test,,",
+        "Sam Ro,CEO,Beta Spa,Como,Lombardy,50,Chemicals,,,",
+    )
+    state = StateManager(str(tmp_path / "h.db"))
+    await state.init_db()
+    result = await apply_import(state, plan_import(path))
+    assert result.email_status == "verified"
+    jo = await state.get_prospect_by_email("jo@acme.test")
+    assert jo.email_status == "verified" and jo.email_verified
+    assert len(await state.get_prospects_by_status("new")) == 2   # the one without email stays unwritable
+
+
+@pytest.mark.asyncio
+async def test_email_status_can_be_set_to_guess(tmp_path):
+    path = write(tmp_path, "Jo Li,HR Manager,Acme Srl,Milan,Lombardy,100,Machinery,jo@acme.test,,")
+    state = StateManager(str(tmp_path / "h.db"))
+    await state.init_db()
+    await apply_import(state, plan_import(path), email_status="guess")
+    jo = await state.get_prospect_by_email("jo@acme.test")
+    assert jo.email_status == "guess" and not jo.email_verified

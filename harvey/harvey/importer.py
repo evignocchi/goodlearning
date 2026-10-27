@@ -21,6 +21,10 @@ from harvey.models.prospect import Prospect
 from harvey.state import FREE_MAIL_DOMAINS, StateManager
 
 IMPORT_SOURCE = "import"
+# The operator vouches for the lists they load (Apollo exports), so an address
+# is verified on import. Harvey's own checks (a verifier key) can still change
+# it later; pass "guess" to import addresses Harvey must not write to yet.
+DEFAULT_EMAIL_STATUS = "verified"
 
 # Header aliases, lowercased. First match wins.
 COLUMNS = {
@@ -76,6 +80,7 @@ class ImportPlan:
 class ImportResult:
     plan: ImportPlan
     inserted: int = 0
+    email_status: str = ""
     existing: list[tuple[int, str]] = field(default_factory=list)
     without_email: int = 0
 
@@ -244,8 +249,9 @@ def _notes(lead: Lead) -> str:
     return ("Imported lead: " + "; ".join(bits)) if bits else ""
 
 
-async def apply_import(state: StateManager, plan: ImportPlan) -> ImportResult:
-    result = ImportResult(plan=plan)
+async def apply_import(state: StateManager, plan: ImportPlan,
+                       email_status: str = DEFAULT_EMAIL_STATUS) -> ImportResult:
+    result = ImportResult(plan=plan, email_status=email_status)
     companies: dict[str, str] = {}  # company key -> id, within this run
     for lead in plan.leads:
         if await state.prospect_exists(
@@ -267,6 +273,8 @@ async def apply_import(state: StateManager, plan: ImportPlan) -> ImportResult:
         await state.add_prospect(Prospect(
             company_id=companies[key], first_name=lead.first_name,
             last_name=lead.last_name, email=lead.email, phone=lead.phone,
+            email_status=email_status if lead.email else "",
+            email_verified=bool(lead.email) and email_status == "verified",
             linkedin_url=lead.linkedin_url, title=lead.title,
             seniority=lead.seniority, source=IMPORT_SOURCE,
             personalization_notes=_notes(lead), company=lead.company,
@@ -287,7 +295,9 @@ def format_report(plan: ImportPlan, result: ImportResult | None = None) -> str:
              f"  Phone dropped:       {len(plan.shared_phones)} (one number on different companies)"]
     if result:
         lines += [f"  Already in Harvey:   {len(result.existing)}",
-                  f"  Imported:            {result.inserted}"]
+                  f"  Imported:            {result.inserted}",
+                  f"  Email status set:    {result.email_status or 'none'} "
+                  f"(not checked by Harvey; set by the operator)"]
     for title, items in (("Skipped", plan.skipped), ("Duplicates", plan.duplicates),
                          ("Phone dropped", plan.shared_phones)):
         for row, why in items:

@@ -405,7 +405,7 @@ def cmd_import_leads(args):
             return
         state = StateManager()
         await state.init_db()
-        result = await apply_import(state, plan)
+        result = await apply_import(state, plan, email_status=args.email_status)
         print("\n" + format_report(plan, result) + "\n")
         if result.without_email:
             print(f"  {result.without_email} lead(s) have no email: Harvey can't write to them yet.\n")
@@ -1038,6 +1038,10 @@ def main():
     sub.add_argument("file", help="CSV file to import")
     sub.add_argument("--dry-run", action="store_true",
                      help="Show the dedup report without writing anything")
+    sub.add_argument("--email-status", default="verified",
+                     choices=["verified", "risky", "guess"],
+                     help="Status given to every imported address (default: verified, "
+                          "the list is vouched for by you; guess = Harvey won't write to them)")
     sub.set_defaults(func=cmd_import_leads)
 
     # harvey export
