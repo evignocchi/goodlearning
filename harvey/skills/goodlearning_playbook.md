@@ -32,19 +32,19 @@ Il target iniziale sono aziende manifatturiere e di servizi in Lombardia, tra 30
 
 I casi d'uso, le formazioni obbligatorie e la pesatura dei segnali sono in `goodlearning_use_cases.md`. Qui sotto c'è cosa Harvey sa captare oggi.
 
-Harvey ha un catalogo di 29 segnali. La maggior parte è pensata per vendere servizi di marketing locale e per Goodlearning non serve. Da confermare (`harvey signals --confirm`):
+Harvey ha un catalogo di 31 segnali (due aggiunti per Goodlearning). La maggior parte è pensata per vendere servizi di marketing locale e per Goodlearning non serve. Da confermare (`harvey signals --confirm`):
 
 | Segnale | Perché conta per Goodlearning |
 |---|---|
 | `HIRING_ROLE`, `OPEN_ROLES` | Un'offerta per HSE, RSPP, responsabile formazione, HR o addetto qualità indica che la formazione è un tema vivo adesso. Cita il ruolo come pubblicato, senza ipotesi sul perché. |
-| `TECH_STACK` | Oggi non riconosce gli LMS (Moodle, Docebo, TalentLMS e simili). È una lacuna da colmare prima di usarlo. |
+| `LMS_IN_USE` | Il sito rimanda a una piattaforma di formazione (Moodle, Docebo, TalentLMS e altre) o ha un sottodominio elearning/lms/fad. L'angolo diventa integrazione e contenuti, mai "vi serve un LMS". Se non c'è, non dire nulla: molti LMS stanno dietro un login. |
+| `CERT_ISO` | L'azienda dichiara una certificazione (ISO 9001, 14001, 45001, 27001, IATF 16949 e simili), una riga per norma. Parlane come di un fatto pubblico, senza ore o scadenze. |
 | `CONTACT_FOUND`, `DECISION_MAKER_TITLE`, `LIKELY_OWNER` | Servono a trovare la persona giusta nell'azienda. |
 | `EMAIL_PATTERN`, `EMAIL_STATUS`, `CONTACT_FORM_URL` | Necessari per scrivere solo a indirizzi consegnabili. |
 
 Non confermare i segnali di rank, Google Ads, Meta Ads, schema markup, prenotazione online, agenzia di marketing: parlano di marketing e non di formazione.
 
-Segnali che oggi non esistono nel catalogo e varrebbe la pena aggiungere, perché sono quelli che davvero indicano un bisogno di formazione:
-- certificazioni dichiarate sul sito (ISO 45001, ISO 9001, ISO 14001, SA8000) → obblighi di formazione e di audit ricorrenti;
+Segnali che oggi non esistono nel catalogo e varrebbe la pena aggiungere:
 - una pagina "lavora con noi" o "formazione" che dà spazio alla crescita delle persone;
 - novità recenti: nuova sede, nuovi reparti, acquisizioni (più persone da inserire);
 - il contesto personale del prospect, se lo fornisci tu (bio, post pubblici).

@@ -22,6 +22,8 @@ import httpx
 from harvey.public_http import public_http_client
 from harvey.startups import funding_text
 
+from harvey.collectors.cert_detect import detect_certifications
+from harvey.collectors.lms_detect import detect_lms
 from harvey.collectors.ats import detect_board, matching_roles, read_board, role_keywords
 
 from harvey.collectors.discover import (
@@ -298,6 +300,9 @@ _YC = r"(?:YC|Y[\s-]?Combinator)"
 _YC_LINK_RE = re.compile(r"ycombinator\.com\\?/companies\\?/([a-z0-9][\w-]*)", re.I)
 YC_ABOUT_PATHS = ("/about", "/about-us", "/company", "/our-story")
 FUNDING_PATHS = ("/press", "/news", "/newsroom", "/blog")
+# Italian sites keep certifications on a quality, company or sustainability page.
+CERT_PATHS = ("/certificazioni", "/qualita", "/qualità", "/politica-qualita", "/azienda",
+              "/chi-siamo", "/company", "/about", "/sostenibilita")
 _YC_SEASONS = {"w": "W", "winter": "W", "s": "S", "summer": "S",
                "f": "F", "fall": "F", "x": "X", "spring": "X"}
 _SEASON_WORD = r"(Winter|Summer|Fall|Spring)"
@@ -1120,6 +1125,25 @@ class ProfileCollector:
         tech = self.detect_tech(home)
         if tech:
             add("TECH_STACK", text=", ".join(tech))
+
+        # A learning platform they already run (presence only: silence proves nothing)
+        if self.wants("LMS_IN_USE"):
+            for name, conf in detect_lms(home, domain):
+                add("LMS_IN_USE", text=name, conf=conf, url=site)
+
+        # Certifications they state on their own pages
+        if self.wants("CERT_ISO"):
+            pages = [(site, home)]
+            curl, chtml = await self._first_present(site, CERT_PATHS)
+            if chtml:
+                pages.append((curl, chtml))
+            claims: dict[str, tuple[float, str]] = {}
+            for url, html in pages:
+                for label, conf in detect_certifications(_text(html)):
+                    if label not in claims or conf > claims[label][0]:
+                        claims[label] = (conf, url)
+            for label, (conf, url) in claims.items():
+                add("CERT_ISO", text=label, conf=conf, url=url)
 
         # Structured data gap
         has_schema = bool(re.search(r'application/ld\+json', home, re.I)

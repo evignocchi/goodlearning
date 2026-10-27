@@ -182,6 +182,38 @@ SIGNAL_CATALOG: list[dict] = [
         "confidence_floor": 0.0,
     },
     {
+        "code": "LMS_IN_USE",
+        "label": "Already runs a learning platform",
+        "description": (
+            "The site links to a learning portal on a known vendor's host (Moodle, "
+            "Docebo, TalentLMS and others) or has its own elearning/lms/fad "
+            "subdomain. It tells you who you're up against, and that the angle is "
+            "integration and content, not 'you need an LMS'. Never recorded as 'no "
+            "LMS': most platforms sit behind a login, so a silent site proves nothing."
+        ),
+        "category": "profile",
+        "value_type": "text",
+        "collector": "profile",
+        "cost_note": "free (homepage HTML)",
+        "confidence_floor": 0.5,
+    },
+    {
+        "code": "CERT_ISO",
+        "label": "Declares a certification",
+        "description": (
+            "The company's own pages say it holds a management-system certification "
+            "(ISO 9001, 14001, 45001, 27001, IATF 16949 and similar), one row per "
+            "standard. Certified companies owe periodic training and audit evidence. "
+            "Only a stated claim counts: an offer of ISO consulting does not, and "
+            "logos in images can't be read, so silence proves nothing."
+        ),
+        "category": "profile",
+        "value_type": "text",
+        "collector": "profile",
+        "cost_note": "free (homepage and a certifications or about page)",
+        "confidence_floor": 0.75,
+    },
+    {
         "code": "NO_SCHEMA_MARKUP",
         "label": "Missing structured data",
         "description": "No JSON-LD schema markup — a concrete, checkable SEO gap you can name in an email.",

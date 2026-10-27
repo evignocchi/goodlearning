@@ -37,7 +37,7 @@ Principio: la certificazione in sé non è il segnale. Il segnale è l'evento ch
 
 ## 2. Casi d'uso, e quanto sono rilevabili da fuori
 
-"Oggi" = Harvey può già captarlo con i segnali del catalogo; "da costruire" = serve un collector nuovo.
+"Oggi" = Harvey può già captarlo con i segnali del catalogo; "da costruire" = serve un collector nuovo. Dalla versione con `CERT_ISO` e `LMS_IN_USE` sono "oggi" anche le certificazioni dichiarate e l'LMS già in uso.
 
 | # | Caso d'uso | Problema reale | Rilevabile da fuori |
 |---|---|---|---|
@@ -48,7 +48,7 @@ Principio: la certificazione in sé non è il segnale. Il segnale è l'evento ch
 | 5 | Multi-sede / franchising | Stesso standard su molti punti | Da costruire (nuove sedi) |
 | 6 | Formazione rete esterna | Agenti, installatori, rivenditori da formare sul prodotto | Da costruire (store locator, lanci) |
 | 7 | Formazione commerciale | Nuovi prodotti, gestione obiezioni | Difficile |
-| 8 | Audit readiness | Prove documentali per ISO, ispezioni, ASL | Da costruire (certificazioni sul sito, Accredia) |
+| 8 | Audit readiness | Prove documentali per ISO, ispezioni, ASL | Oggi: `CERT_ISO` (dal sito; Accredia resta da costruire) |
 | 9 | Lavoratori stranieri / multilingua | Formazione in più lingue con comprensione verificata | Difficile |
 | 10 | Stagionali e turnover alto | Retail, ristorazione, logistica, turismo | Oggi: stesso annuncio ripubblicato (`OPEN_ROLES`) |
 | 11 | Customer care e assistenza tecnica | Procedure e troubleshooting a portata di mano | Difficile |
@@ -66,13 +66,13 @@ Struttura: evento scatenante → segnale osservabile → fonte → decisore → 
 | Onboarding | Molte assunzioni in poco tempo, annunci ripetuti per lo stesso ruolo | Job board, pagina "lavora con noi" |
 | Turnover alto | Annuncio ripubblicato più volte | Job board, Glassdoor/Indeed |
 | Macchine pesanti | Aziende con parco macchine (edilizia, logistica, agricoltura) che cercano carrellista, gruista, operatore | Annunci, SOA, albi |
-| Audit / ISO | Annuncia o ottiene una certificazione ISO; annunci per responsabile qualità/HSE | Registri Accredia, comunicati |
+| Audit / ISO | Annuncia o ottiene una certificazione ISO; annunci per responsabile qualità/HSE | Oggi: `CERT_ISO` dal sito. Registri Accredia e comunicati: da costruire |
 | NIS2 | Settori nel perimetro NIS2, annunci per CISO/IT security | Elenchi settoriali, job board |
 | Crescita / multi-sede | Nuove sedi o punti vendita, round di finanziamento | News, Google Maps, comunicati |
 | Fondi formativi | Aderente a un fondo interprofessionale, bandi aperti | Bandi, siti dei fondi |
 | Ricambio generazionale | Titolari o figure chiave oltre i 60; ricerca di successori tecnici | Registro imprese |
 | Rete esterna | Rete di agenti o installatori, nuovo prodotto in lancio | Sito, comunicati |
-| Formazione già in uso | LMS concorrente (sottodomini, pagine "academy", annunci che lo citano) | Tecnologie del sito, annunci |
+| Formazione già in uso | LMS concorrente (link a piattaforme note, sottodomini elearning/lms/fad) | Oggi: `LMS_IN_USE` dal sito. Gli annunci che lo citano: da costruire |
 | Cambio ruolo HR | Nuovo HR/Training manager da poco (finestra di acquisto) | Fonti fornite dall'utente |
 | Infortuni e sanzioni | Sanzioni, incidenti, ispezioni | News locali, INAIL |
 
@@ -93,4 +93,4 @@ Su sanzioni e infortuni: non scriverne mai nell'email come fatto noto. Sono noti
 
 I casi con obbligo + scadenza + segnale pubblico sono i più facili da trasformare in outreach: sicurezza (annunci HSE e per attrezzature), ISO, NIS2, turnover. Knowledge retention e onboarding sono più sentiti dai clienti ma più difficili da rilevare dall'esterno, quindi li usiamo come angolo della seconda email e non come motivo della prima.
 
-Per il pilota: settore manifatturiero lombardo (è quello del primo elenco), con tre casi: audit/ISO e sicurezza, onboarding e turnover, ricambio generazionale. Segnali già disponibili: annunci. Da costruire: certificazioni ISO dichiarate sul sito e LMS concorrenti.
+Per il pilota: settore manifatturiero lombardo (è quello del primo elenco), con tre casi: audit/ISO e sicurezza, onboarding e turnover, ricambio generazionale. Segnali già disponibili: annunci (`HIRING_ROLE`, `OPEN_ROLES`), certificazioni dichiarate (`CERT_ISO`) e LMS già in uso (`LMS_IN_USE`). Da costruire: nuove sedi, ricambio generazionale, perimetro NIS2.
