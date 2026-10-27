@@ -60,3 +60,7 @@ harvey.local.yaml
 # Backups and in-progress writes from `harvey train` hold the same config.
 harvey.local.yaml.*
 harvey.yaml.*
+
+# Goodlearning: the fork tracks its own config (no secrets in it; those stay in .env)
+!harvey.local.yaml
+!skills/product_knowledge.md
